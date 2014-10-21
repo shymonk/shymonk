@@ -56,3 +56,4 @@ target/
 # Pelican
 cache/
 output/
+.sass-cache/
