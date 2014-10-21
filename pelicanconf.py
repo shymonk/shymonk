@@ -1,16 +1,16 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- #
+# coding: utf-8
 from __future__ import unicode_literals
 
-AUTHOR = u'shymonk'
-SITENAME = u"shymonk's blog"
+AUTHOR = 'shymonk'
+SITENAME = "Shymonk Blog"
 SITEURL = ''
 
-PATH = 'content'
+PATH = 'posts'
+THEME = 'themes/frankies'
+TIMEZONE = 'Asia/Shanghai'
 
-TIMEZONE = 'Europe/Paris'
-
-DEFAULT_LANG = u'zh'
+DEFAULT_LANG = 'zh'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
