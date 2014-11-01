@@ -1,7 +1,7 @@
 Title: About
 
 
-# About me
+# About Me
 
 Hi, I'm shymonk, a software engineer works with python. I am keen to write more readable code because i believe that:
 
@@ -32,6 +32,6 @@ I talk about technology in Chinese and English on this site, all of writings and
 -   [jedi](http://tkf.github.io/emacs-jedi/latest/) - Python auto-completion.
 
 
-[email](hellojohn201@gmail.com)  
+[email](mailto:hellojohn201@gmail.com)  
 [github](http://github.com/shymonk)  
 [twitter](http://twitter.com/shymonk)
