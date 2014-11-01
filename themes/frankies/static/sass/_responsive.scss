@@ -1,0 +1,176 @@
+@media screen and (max-width: 700px) {
+  .site-header {
+    @include padding-leader(1.5);
+
+    .site-cover {
+      $diameter : $base-line-height * 4.3;
+      width: relative-size($diameter);
+      height: relative-size($diameter);
+      margin: relative-size($base-line-height * 0.1) auto;
+    }
+    .site-title {
+      @include adjust-font-size-to(44px, 2.5);
+    }
+  }
+
+  .site-nav-links li {
+    font-size: 17px;
+    @include adjust-leading-to(2, 17px);
+  }
+  .site-nav-shadow {
+    height: relative-size($base-line-height*2);
+  }
+  .site-search {
+    @include adjust-font-size-to(17px);
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .site-header {
+    @include padding-leader(1);
+
+    .site-cover {
+      $diameter : $base-line-height * 3.8;
+      width: relative-size($diameter);
+      height: relative-size($diameter);
+      margin: relative-size($base-line-height * 0.1) auto;
+    }
+    .site-title {
+      @include adjust-font-size-to(40px, 2.5);
+    }
+  }
+
+  .site-navbar {
+    &, html.js &, .site-nav-shadow, {
+      height: relative-size($base-line-height * 1.5);
+    }
+
+    &.in-search {
+      .site-nav-links {
+        @include transform(translateY($base-line-height * -1.5))
+      }
+      .site-search {
+        @include transform(translateY($base-line-height * -1.3))
+      }
+    }
+  }
+
+  .site-nav-links li {
+    font-size: 18px;
+    @include adjust-leading-to(1.5, 18px);
+  }
+  .site-search {
+    @include transform(translateY(1px));
+  }
+
+  .main-content {
+    img.left, img.right {
+      float: none;
+      margin: 0 auto;
+      display: block;
+    }
+
+    h1, h2, .post-title {
+      $new-size: $h2-size - 4px;
+      @include adjust-font-size-to($new-size, 2, $post-font-size);
+    }
+
+    h3 {
+      $new-size: $h3-size - 2px;
+      @include adjust-font-size-to($new-size, 2, $post-font-size);
+    }
+
+    $table-font-size: $post-font-size - 2px;
+    table {
+      width: 100%;
+      @include adjust-font-size-to($table-font-size, 1, $post-font-size);
+      @include leader(1, $table-font-size);
+      @include trailer(1, $table-font-size);
+    }
+    th, td {
+      @include padding-leader(0.25, $table-font-size);
+      @include padding-trailer(0.25, $table-font-size);
+
+      &:first-child { padding-left: 1em; }
+      &:last-child { padding-right: 1em; }
+    }
+    tr + tr {
+      th, td {
+        line-height: relative-size($base-line-height - 1, $table-font-size);
+        border-top: 1px solid rgba(0,0,0,.1);
+      }
+    }
+    thead {
+      th, td {
+        background-color: rgba(0,0,0,.11);
+        font-family: $font-title;
+        font-weight: 600;
+        text-align: left;
+        text-shadow: 0 1px 1px rgba(255,255,255,.75);
+      }
+    }
+  }
+
+  .blog-post {
+    padding: 0;
+  }
+
+  body > iframe[src^="http://logdown"] {
+    position: absolute !important;
+  }
+}
+
+@media screen and (max-width: 580px) and (min-width: 401px) {
+  .site-footer {
+    @include adjust-font-size-to(14px);
+    @include padding-leader(0.5, 14px);
+    @include padding-trailer(0.5, 14px);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 14px;
+  }
+
+  .site-header, .main-content, .site-footer {
+    padding-left: .75em;
+    padding-right: .75em;
+  }
+
+  .site-header {
+    @include padding-trailer(.25);
+
+    .site-title {
+      @include adjust-font-size-to(36px, 2);
+      @include padding-leader(.25, 36px);
+    }
+  }
+
+  .main-content {
+    h1, h2, .post-title {
+      $new-size: $h2-size - 2px;
+      @include adjust-font-size-to($new-size, 1.5, $post-font-size);
+    }
+
+    h3 {
+      $new-size: $h3-size - 1px;
+      @include adjust-font-size-to($new-size, 1.5, $post-font-size);
+    }
+  }
+
+  .annual-archive {
+    .archive-item {
+      height: auto;
+      @include leader(1, $post-font-size);
+      @include trailer(1, $post-font-size);
+    }
+    .archive-date {
+      margin-top: 0;
+    }
+  }
+
+  .site-footer .theme-credit {
+    display: block;
+  }
+}

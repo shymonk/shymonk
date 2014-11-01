@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section id="content" class="body">
+    <h1>Blog Archives</h1>
+
+<div class="annual-archive">
+    {# for year, month, day in period #}
+    <h3 class="archive-year">{{ period }}</h3>
+    <ul class="archive-list" role="list">
+        {% for article in dates %}
+        <li class="archive-item">
+            <div class="archive-date">
+                <time datetime="{{ article.locale_date }}" pubdate>
+                    <span class="month">{{ article.date|strftime('%m') }}</span>
+                    <span class="day">{{ article.date|strftime('%d') }}</span>
+                </time>
+            </div>
+            <div class="vertical-center archive-title">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="center-inner archive-link" role="link">
+                {{ article.title }}
+            </a></div>
+        </li>
+        {% endfor %}
+    </ul>
+    {# endfor #}
+</div>
+
+
+</section>
+{% endblock %}

@@ -1,5 +1,5 @@
 Title: Django Admin Inline Save
-Date: 2012-03-30 23:00:00 UTC-03:00
+Date: 2014-10-01 23:00:00 UTC-03:00
 
 
 # Context<a id="sec-1" name="sec-1"></a>
