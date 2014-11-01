@@ -1,4 +1,4 @@
 shymonk
 =======
 
-Pernal blog based on Pelican
+Personal blog based on Pelican
