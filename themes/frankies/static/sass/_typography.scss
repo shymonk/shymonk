@@ -41,10 +41,6 @@ p {
     @include trailer(1, 20px);
   }
 
-  h1, h5 {
-    text-transform: uppercase;
-  }
-
   h6 {
     font-weight: 500;
   }

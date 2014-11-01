@@ -570,10 +570,6 @@ p {
   margin-bottom: 1.4em;
 }
 /* line 44, ../sass/_typography.scss */
-.main-content h1, .main-content h5 {
-  text-transform: uppercase;
-}
-/* line 48, ../sass/_typography.scss */
 .main-content h6 {
   font-weight: 500;
 }
