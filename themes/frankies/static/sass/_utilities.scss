@@ -15,6 +15,26 @@ $font-title: "Avenir Next Condensed Demi Bold", "PT Sans Narrow", "Helvetica Neu
 $font-serif: Georgia, "PT Serif", "Times New Roman", Times, serif;
 $font-mono: "Source Code Pro", Menlo, Monaco, Courier, monospace;
 
+$heading-font-family: "PT Serif", "Georgia", "Helvetica Neue", Arial, sans-serif !default;
+$header-title-font-family: $heading-font-family !default;
+$header-subtitle-font-family: $heading-font-family !default;
+$sans: "PT Sans", "Helvetica Neue", Arial, sans-serif !default;
+$serif: "PT Serif", Georgia, Times, "Times New Roman", serif !default;
+$mono: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace !default;
+
+.sans {
+    font-family: $sans;
+}
+.serif {
+    font-family: $serif;
+}
+.mono {
+    font-family: $mono;
+}
+.heading {
+  font-family: $heading-font-family;
+}
+
 
 $site-header-shadow: 0 1px 5px rgba(0,0,0,.75);
 $post-border-color: rgba(0,0,0,.15);
