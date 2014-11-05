@@ -35,6 +35,9 @@ YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
 # Disqus
 DISQUS_SITENAME = "shymonk"
 
+# Google Analytics
+GOOGLE_ANALYTICS = "UA-56451105-1"
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
