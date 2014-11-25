@@ -57,3 +57,4 @@ target/
 cache/
 output/
 .sass-cache/
+*.org

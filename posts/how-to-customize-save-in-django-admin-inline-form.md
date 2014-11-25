@@ -1,8 +1,8 @@
-Title: Django Admin Inline Save
+Title: How To Customize Save In Django Admin Inline Form
 Date: 2014-10-01 23:00:00 UTC-03:00
 
 
-# Context<a id="sec-1" name="sec-1"></a>
+# Background
 
 This is a common case in django ORM.
 
@@ -16,7 +16,7 @@ This is a common case in django ORM.
         author = models.ForeignKey(Author)
 
 As a CMS, we are also required to provide a feature to create Author and
-add some Books together. So, the `admin` class is here:
+several Books for him together. So, the `admin` class is here:
 
     from django import forms
     
@@ -39,7 +39,7 @@ add some Books together. So, the `admin` class is here:
     class BookForm(forms.ModelForm):
         model = Book
 
-With this `AuthorAdmin`, you can get all things done without doubt.
+With this `BookInline`, you can get all things done without doubt.
 But let't think about a special case:
 
 > Assume that there's another Model `Press`, every author belongs to
@@ -49,15 +49,16 @@ But let't think about a special case:
 >     &#x2026;
 > 
 > When creating a author and add/update book to him, you also need
-> to create/update the same one for press, synchronously. May be
+> to create/update the same one for the press, synchronously. May be
 > it is a obvious bad design, but just a example.
 
 So, how to do that?
 
-# HowTo<a id="sec-2" name="sec-2"></a>
+# HowTo
 
 Straightforward to say, you should customize `FormSet` for `BookInline`
 and override these two methods:
+
 -   `save_new_objects`
 -   `save_existing_objects`
 
@@ -86,9 +87,9 @@ So, the `BookInline` will becomes
                 # update book for press
           return saved_instances
 
-# Why<a id="sec-3" name="sec-3"></a>
+# Why
 
-## Traps<a id="sec-3-1" name="sec-3-1"></a>
+## Traps
 
 Inertia of thinking, we can override `save` function of `BookForm`
 like this:
@@ -132,11 +133,11 @@ you can not access it directly as following at downstream
         saved_instances = super(BookInlineFormSet, self).save_new_objects(commit)
         if commit:
             book = saved_instances[0]
-            author = book.author  # author.id is None
+            author = book.author  # wrong way
         return saved_instances
 
 Because django probably already **cached** a invalid author before.
-In order to get a "fresh" `author`, use the primary key value of the
+In order to get a "fresh" author, use the primary key value of the
 related object as stored in the db field instead.
 
     def save_new_objects(self, commit=True):
@@ -147,5 +148,3 @@ related object as stored in the db field instead.
         return saved_instances
 
 About caching ForeignKey in django, see [django doc](https://docs.djangoproject.com/en/dev/topics/db/queries/#one-to-many-relationships) for more details.
-
-## Workflow Of Django Admin Inline<a id="sec-3-2" name="sec-3-2"></a>
