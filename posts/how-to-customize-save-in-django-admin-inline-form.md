@@ -1,5 +1,5 @@
 Title: How To Customize Save In Django Admin Inline Form
-Date: 2014-10-01 23:00:00 UTC-03:00
+Date: 2014-10-01 23:00:00 UTC+08:00
 
 
 # Background

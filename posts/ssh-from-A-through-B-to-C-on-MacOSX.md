@@ -1,3 +1,7 @@
+Title: SSH from A through B to C, using private key on B on Mac OS X
+Date: 2015-07-07 23:29:00 UTC+08:00
+
+
 # Schematic:
 
         ssh       ssh
