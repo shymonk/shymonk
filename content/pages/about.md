@@ -1,7 +1,7 @@
 Title: About
-
-
-# About Me
+Preferred_Title: About Me
+Subtitle: This is what i do
+Header_Cover: theme/images/about-bg.jpg
 
 Hi, I'm shymonk, a software engineer works with python. I am keen to write more readable code because i believe that:
 
@@ -30,8 +30,3 @@ I talk about technology in Chinese and English on this site, all of writings and
 -   [fiplr](https://github.com/d11wtq/fiplr) - open file in project without delay.
 -   [visual-regexp](https://github.com/benma/visual-regexp.el) - a regexp/replace command for Emacs with interactive visual feedback.
 -   [jedi](http://tkf.github.io/emacs-jedi/latest/) - Python auto-completion.
-
-
-[email](mailto:hellojohn201@gmail.com)  
-[github](http://github.com/shymonk)  
-[twitter](http://twitter.com/shymonk)
