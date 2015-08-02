@@ -9,6 +9,7 @@ body {
   font-size: 18px;
   font-weight: 300;
   color: #404040;
+  background-image: url("../images/bg.jpg");
 }
 
 p {

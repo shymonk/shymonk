@@ -30,16 +30,7 @@
                     {{ article.title }}
                 </h2>
             </a>
-            {% if article.summary %}
-                {{ article.summary|truncate(140) }}
-            {% endif %}
-            <p class="post-meta">Posted by
-                {% for author in article.authors %}
-                    <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-                {% endfor %}
-                 on {{ article.locale_date }}
-                 {% include 'comments.html' %}
-            </p>
+            {{ article.summary }}
         </div>
         <hr>
     {% endfor %}
