@@ -58,3 +58,4 @@ cache/
 output/
 .sass-cache/
 *.org
+*.pid
