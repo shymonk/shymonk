@@ -30,9 +30,10 @@
                     {{ article.title }}
                 </h2>
             </a>
-            {{ article.summary }}
+            <div class="post-summary">
+                {{ article.summary }}
+            </div>
         </div>
-        <hr>
     {% endfor %}
 
     {% include "pagination.html" %}

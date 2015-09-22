@@ -42,7 +42,6 @@ TRANSLATION_FEED_ATOM = None
 DISPLAY_PAGES_ON_MENU = False
 DISPLAY_CATEGORIES_ON_MENU = False
 MENUITEMS = (
-    ('Home', '/'),
     ('Archives', '/archives.html'),
     ('About', '/about.html'),
 )
