@@ -1,4 +1,0 @@
-* TODO
-
-- Replace highlight.js by porting [[https://github.com/jakevdp/pelican-octopress-theme/blob/d90ff392f63980e26c9d33d38903b3e0ab5fe6af/sass/partials/_syntax.scss][_syntax.scss]] from pelican-octopress-theme
-- Add liquid_tags plugin
