@@ -413,3 +413,71 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #0085a1;
 }
+article h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 20px;
+}
+article h1 {
+  font-weight: 700;
+}
+article h2 {
+  font-weight: 600;
+}
+article h2 {
+  font-weight: 500;
+}
+.annual-archive .archive-list,
+.annual-archive .archive-year {
+  line-height: 1.8em;
+}
+.annual-archive .archive-year {
+  margin-bottom: 0.46667em;
+}
+.annual-archive .archive-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+.annual-archive .archive-item {
+  height: 2.8em;
+  font-weight: 600;
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
+}
+.annual-archive .archive-date {
+  width: 2.8em;
+  height: 2.8em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  border: 0.19em solid;
+  border-radius: 4px;
+  float: left;
+  margin: 0.25em 0;
+}
+.annual-archive .archive-title {
+  height: 100%;
+  color: #454545;
+  margin-left: 3.05em;
+  display: block;
+  font-size: 1.2em;
+  line-height: 1.16667em;
+}
+.group:before, .annual-archive .archive-item:before, .group:after, .annual-archive .archive-item:after {
+  content: "";
+  display: table;
+}
+.group:after, .annual-archive .archive-item:after {
+  clear: both;
+}
+.vertical-center:before {
+  content: '';
+  width: 1px;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -1px;
+}
+.vertical-center .center-inner {
+    display: inline-block;
+    vertical-align: middle;
+}

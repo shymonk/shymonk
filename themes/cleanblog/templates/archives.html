@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Archives for {{ SITENAME }}</h1>
+                        <h1>Archives</h1>
                     </div>
                 </div>
             </div>
@@ -22,11 +22,25 @@
 {% endblock header %}
 
 {% block content %}
-    <dl>
-        {% for article in dates %}
-            <dt>{{ article.locale_date }}</dt>
-            <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+    <div class="annual-archive">
+        {% for year, articles in dates|groupby('date.year')|sort(reverse=True) %}
+        <h2 class="archive-year">{{ year }}</h3>
+        <ul class="archive-list" role="list">
+            {% for article in articles %}
+            <li class="archive-item">
+                <div class="archive-date">
+                    <time datetime="{{ article.locale_date }}" pubdate>
+                        <span class="month">{{ article.date|strftime('%b') }}</span>
+                        <span class="day">{{ article.date|strftime('%d') }}</span>
+                    </time>
+                </div>
+                <div class="vertical-center archive-title">
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="center-inner archive-link" role="link">
+                        {{ article.title }}
+                    </a></div>
+            </li>
+            {% endfor %}
+        </ul>
         {% endfor %}
-        <hr>
-    </dl>
+    </div>
 {% endblock content %}
