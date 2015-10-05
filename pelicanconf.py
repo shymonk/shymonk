@@ -54,7 +54,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 # Social widget
 GITHUB_URL = 'http://github.com/shymonk'
 TWITTER_URL = 'http://twitter.com/shymonk'
-EMAIL_URL = 'hellojohn201@gmail.com'
+EMAIL_URL = 'mailto:hellojohn201@gmail.com'
 
 
 DEFAULT_PAGINATION = False
