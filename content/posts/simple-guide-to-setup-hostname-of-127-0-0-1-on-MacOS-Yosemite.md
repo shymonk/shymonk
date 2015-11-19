@@ -1,3 +1,7 @@
+Title: A Simple Guide To Setup Hostname Of 127.0.0.1 On MacOS Yosemite
+Date: 2014-11-19 21:29:00 UTC+08:00
+
+
 Sometimes we have to map a hostname to loopback address 127.0.0.1
 by some reasons of development. This is a simple guide to show how
 to do that on MacOS 10.10 Yosemite.
