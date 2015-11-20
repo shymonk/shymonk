@@ -1,5 +1,5 @@
 Title: A Simple Guide To Setup Hostname Of 127.0.0.1 On MacOS Yosemite
-Date: 2014-11-19 21:29:00 UTC+08:00
+Date: 2015-11-19 21:29:00 UTC+08:00
 
 
 Sometimes we have to map a hostname to loopback address 127.0.0.1
