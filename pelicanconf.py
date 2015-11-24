@@ -53,7 +53,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 # Social widget
 GITHUB_URL = 'http://github.com/shymonk'
-TWITTER_URL = 'http://twitter.com/shymonk'
+INSTAGRAM_URL = 'https://www.instagram.com/shymonk/'
 EMAIL_URL = 'mailto:hellojohn201@gmail.com'
 
 

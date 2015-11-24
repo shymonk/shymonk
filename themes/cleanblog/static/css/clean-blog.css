@@ -425,6 +425,9 @@ article h2 {
 article h2 {
   font-weight: 500;
 }
+article blockquote p {
+  margin-top: 1px;
+}
 .annual-archive .archive-list,
 .annual-archive .archive-year {
   line-height: 1.8em;
@@ -459,7 +462,7 @@ article h2 {
   color: #454545;
   margin-left: 3.05em;
   display: block;
-  font-size: 1.2em;
+  font-size: 1.1em;
   line-height: 1.16667em;
 }
 .group:before, .annual-archive .archive-item:before, .group:after, .annual-archive .archive-item:after {
