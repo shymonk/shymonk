@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'shymonk'
 SITENAME = "shymonk"
-SITESUBTITLE = 'Programming with python and emacs'
+SITESUBTITLE = 'In an ephemeral world some idea linger'
 SITEURL = ''
 
 # Article path
