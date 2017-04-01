@@ -9,10 +9,10 @@ This is a common case in django ORM.
     from django.db import models
     
     class Author(models.Model):
-        name = models.CharField(max_length=255)
+        name = models.CharField(max*length=255)
     
     class Book(models.Model):
-        name = models.CharField(max_length=255)
+        name = models.CharField(max*length=255)
         author = models.ForeignKey(Author)
 
 As a CMS, we are also required to provide a feature to create Author and
