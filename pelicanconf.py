@@ -18,7 +18,7 @@ DEFAULT_LANG = 'en'
 LOCALE = ('en_US',)
 TIMEZONE = 'Asia/Shanghai'
 DEFAULT_DATE = 'fs'
-DEFAULT_DATE_FORMAT = '%B %d, %Y'
+DEFAULT_DATE_FORMAT = '%Y-%m-%d %H:%M'
 
 # Place articles in a location such as {slug}/index.html
 # and link to them as {slug} instead of {slug}.html

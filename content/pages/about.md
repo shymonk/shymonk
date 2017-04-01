@@ -1,15 +1,10 @@
 Title: About
 Preferred_Title: About Me
-Subtitle: This is what i do
 Header_Cover: theme/images/about-bg.jpg
 
-Hi, I'm shymonk, a software developer works with python. I am keen to write more readable code because i believe that:
->   Programs must be written for people to read, and only incidentally for machines to execute.
 
-moreover, i'm also interested in design.
+Hi, I'm shymonk, a software developer works with python. I talk about technology and share software experience in Chinese and English on this site, all of writings and thoughts are my own.
 
-I choose [emacs](http://www.gnu.org/software/emacs/) as editor to write code and usually works on my Macbook.  
-I talk about technology and share software experience in Chinese and English on this site, all of writings and thoughts are my own.
 
 ## Recommend Source
 

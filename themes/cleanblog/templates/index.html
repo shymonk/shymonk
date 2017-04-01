@@ -30,9 +30,14 @@
                     {{ article.title }}
                 </h2>
             </a>
+            {% if article.summary %}
             <div class="post-summary">
-                {{ article.summary }}
+                {{ article.summary|striptags|truncate(140) }}
             </div>
+            {% endif %}
+            <p class="post-meta">
+                {{ article.locale_date }}
+            </p>
         </div>
     {% endfor %}
 
