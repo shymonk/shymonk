@@ -51,6 +51,25 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
          ('You can modify those links in your config file', '#'),)
 
+
+# Plugins
+PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS=['sitemap']
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.3,
+        'indexes': 0.8,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
+
 # Social widget
 GITHUB_URL = 'http://github.com/shymonk'
 INSTAGRAM_URL = 'https://www.instagram.com/shymonk/'
