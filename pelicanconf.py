@@ -54,7 +54,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 # Plugins
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS=['sitemap', 'optimize_images']
+PLUGINS=['sitemap']
 
 SITEMAP = {
     'format': 'xml',
