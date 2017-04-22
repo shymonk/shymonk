@@ -12,10 +12,10 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=localhost
+SSH_HOST=106.187.51.153
 SSH_PORT=22
-SSH_USER=root
-SSH_TARGET_DIR=/var/www
+SSH_USER=john
+SSH_TARGET_DIR=/home/john/www.shymonk.com/
 
 S3_BUCKET=my_s3_bucket
 
