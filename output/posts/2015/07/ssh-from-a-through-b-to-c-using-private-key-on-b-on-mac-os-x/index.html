@@ -1,0 +1,202 @@
+<html>
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>shymonk</title>
+
+        <!-- CSS -->
+            <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+            <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Home</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/archives.html">Archives</a></li>
+                        <li><a href="/about.html">About</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>SSH from A through B to C, using private key on B on Mac OS X</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/shymonk.html">shymonk</a>
+                             on 2015-07-07 23:29
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <article>
+        <h1>Schematic:</h1>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">ssh</span><span class="w">       </span><span class="n">ssh</span>
+<span class="n">A</span><span class="w"> </span><span class="o">------&gt;</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">------&gt;</span><span class="w"> </span><span class="n">C</span>
+<span class="w">    </span><span class="o">^</span><span class="w">          </span><span class="o">^</span>
+<span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">A</span><span class="s">&#39;s   using B&#39;</span><span class="n">s</span>
+<span class="w"> </span><span class="n">ssh</span><span class="w"> </span><span class="n">key</span><span class="w">     </span><span class="n">ssh</span><span class="w"> </span><span class="n">key</span>
+</code></pre></div>
+
+<h1>Preconditions:</h1>
+<p>A is running ssh-agent;
+A can access B;
+B can access C;
+A's ssh public key is present in <code>B:~/.ssh/authorized_keys</code>
+B's ssh public key is present in <code>C:~/.ssh/authorized_keys</code></p>
+<h1>HowTo</h1>
+<h2>Method 1 (Use ssh -t)</h2>
+<div class="highlight"><pre><span></span><code>A$ ssh -t B ssh C
+</code></pre></div>
+
+<h2>Method 2 (Use ProxyCommand)</h2>
+<div class="highlight"><pre><span></span><code>A$ vim ~/.ssh/config
+
+Host C
+ProxyCommand ssh -o &#39;ForwardAgent yes&#39; B &#39;ssh-add &amp;&amp; nc %h %p&#39;
+</code></pre></div>
+
+<p>If your ssh private key on B is in a non-standard location(not <code>~/.ssh/id_rsa</code>), add its path after ssh-add.
+You should now be able to access C from A:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">A</span><span class="p">$</span><span class="w"> </span><span class="nv">ssh</span><span class="w"> </span><span class="nv">C</span>
+<span class="nv">C</span><span class="p">$</span>
+</code></pre></div>
+
+<h1>Debug</h1>
+<p>Use multiple -v option to debugging connection, authentication, and configuration problems.</p>
+<div class="highlight"><pre><span></span><code>A$ ssh -vvv C
+</code></pre></div>
+
+<h1>Example</h1>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>~/.ssh/config
+Host<span class="w"> </span>sshproxy
+HostName<span class="w"> </span><span class="m">192</span>.168.10.10
+User<span class="w"> </span>root
+
+Host<span class="w"> </span>target
+HostName<span class="w"> </span><span class="m">192</span>.168.0.170
+User<span class="w"> </span>root
+ProxyCommand<span class="w"> </span>ssh<span class="w"> </span>-o<span class="w"> </span><span class="s1">&#39;ForwardAgent yes&#39;</span><span class="w"> </span>sohuzk<span class="w"> </span><span class="s1">&#39;ssh-add &amp;&amp; nc %h %p&#39;</span>
+
+$<span class="w"> </span>ssh<span class="w"> </span>target<span class="w"> </span><span class="s1">&#39;tail -f /var/log/example.log&#39;</span>
+</code></pre></div>
+    </article>
+    <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shymonk';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="mailto:hellojohn201@gmail.com">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://github.com/shymonk">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/shymonk/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">
+                        Copyright &copy; 2017 shymonk.
+                        Powered by <a href="//getpelican.com/">Pelican</a>
+                        Theme <a href="//startbootstrap.com/template-overviews/clean-blog/">Clean-Blog</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Javascript -->
+        <script src="/theme/js/jquery.min.js"></script>
+        <script src="/theme/js/bootstrap.min.js"></script>
+        <script src="/theme/js/clean-blog.min.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-56451105-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<html>
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>shymonk</title>
+
+        <!-- CSS -->
+            <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+            <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Home</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/archives.html">Archives</a></li>
+                        <li><a href="/about.html">About</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>A Simple Guide To Setup Hostname Of 127.0.0.1 On MacOS Yosemite</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/shymonk.html">shymonk</a>
+                             on 2015-11-19 21:29
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <article>
+        <p>Sometimes we have to map a hostname to loopback address 127.0.0.1
+by some reasons of development. This is a simple guide to show how
+to do that on MacOS 10.10 Yosemite.</p>
+<h1>Everythings starts with <a href="https://en.wikipedia.org/wiki/Hosts_(file)">hosts file</a></h1>
+<p>Add the following line in <code>/etc/hosts</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="mf">127.0.0.1</span><span class="w"> </span><span class="n">test</span><span class="mf">.</span><span class="n">domain</span><span class="mf">.</span><span class="n">com</span>
+</code></pre></div>
+
+<p>If your local port goes with <code>80</code>, this is all that you need to do.
+But mostly we start a develop web server with <code>Non-80</code> port such as
+<code>localhost:8080</code>. So port forwarding comes.</p>
+<h1>Port Forwarding</h1>
+<p>From OS X 10.10, well-known <a href="https://en.wikipedia.org/wiki/Ipfirewall#cite_note-2">ipfw</a> has been removed completely. So we
+use <a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/pf.conf.5.html">pf</a> which is the new recommanded way to do port forwarding.</p>
+<p>First, add an anchor file <code>/etc/pf.anchors/com.custom</code> to contain the
+port forwarding rule.</p>
+<div class="highlight"><pre><span></span><code><span class="n">rdr</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">lo0</span><span class="w"> </span><span class="n">inet</span><span class="w"> </span><span class="n">proto</span><span class="w"> </span><span class="n">tcp</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="kr">any</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="mi">8080</span>
+</code></pre></div>
+
+<p>Then, add two lines to /etc/pf.conf to load your new rule.
+It is important where these lines go.
+Add this line right after rdr-anchor "com.apple/*":</p>
+<div class="highlight"><pre><span></span><code>rdr-anchor &quot;custom&quot;
+</code></pre></div>
+
+<p>Add this line directly after <code>load anchor "com.apple"</code> from `/etc/pf.anchors/com.apple":</p>
+<div class="highlight"><pre><span></span><code><span class="nb">load</span><span class="w"> </span><span class="n">anchor</span><span class="w"> </span><span class="s2">&quot;pow&quot;</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="s2">&quot;/etc/pf.anchors/com.custom&quot;</span>
+</code></pre></div>
+
+<p>Next, reload the rules into pf by running</p>
+<div class="highlight"><pre><span></span><code>sudo pfctl -f /etc/pf.conf
+</code></pre></div>
+
+<p>Finally, enable <code>pf</code> by running</p>
+<div class="highlight"><pre><span></span><code>sudo pfctl -e
+</code></pre></div>
+
+<p>Now, input <code>test.domain.com</code> into your browser address bar, it will works.</p>
+    </article>
+    <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shymonk';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="mailto:hellojohn201@gmail.com">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://github.com/shymonk">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/shymonk/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">
+                        Copyright &copy; 2017 shymonk.
+                        Powered by <a href="//getpelican.com/">Pelican</a>
+                        Theme <a href="//startbootstrap.com/template-overviews/clean-blog/">Clean-Blog</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Javascript -->
+        <script src="/theme/js/jquery.min.js"></script>
+        <script src="/theme/js/bootstrap.min.js"></script>
+        <script src="/theme/js/clean-blog.min.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-56451105-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+
+</html>

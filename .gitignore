@@ -55,7 +55,6 @@ target/
 
 # Pelican
 cache/
-output/
 .sass-cache/
 *.org
 *.pid

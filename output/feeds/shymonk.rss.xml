@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>shymonk - shymonk</title><link>/</link><description>In an ephemeral world some idea linger</description><atom:link href="/feeds/shymonk.rss.xml" rel="self"/><lastBuildDate>Sat, 01 Apr 2017 14:15:37 +0800</lastBuildDate><item><title>Stackless Python 探秘</title><link>/posts/2016/06/stackless-python-tan-mi/</link><description>&lt;p&gt;提到stackless python， 相信很多人早已对其有所耳闻。作为Python解释器的另一种实现，其设计思路对整个Python世界产生了
+深远影响。坦白的讲，我并没有大规模stackless python 的应用经 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">shymonk</dc:creator><pubDate>Wed, 01 Jun 2016 22:00:00 +0800</pubDate><guid>tag:None,2016-06-01:/posts/2016/06/stackless-python-tan-mi/</guid><category>Python</category><category>stackless</category><category>python</category></item><item><title>A Simple Guide To Setup Hostname Of 127.0.0.1 On MacOS Yosemite</title><link>/posts/2015/11/a-simple-guide-to-setup-hostname-of-127001-on-macos-yosemite/</link><description>&lt;p&gt;Sometimes we have to map a hostname to loopback address 127.0.0.1
+by some reasons of development. This is a simple guide to show how
+to do that on MacOS 10.10 Yosemite.&lt;/p&gt;
+&lt;h1&gt;Everythings starts with &lt;a href="https://en.wikipedia.org/wiki/Hosts_(file)"&gt;hosts file&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Add the following line in &lt;code&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="mf"&gt;127.0.0 …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">shymonk</dc:creator><pubDate>Thu, 19 Nov 2015 21:29:00 -0800</pubDate><guid>tag:None,2015-11-19:/posts/2015/11/a-simple-guide-to-setup-hostname-of-127001-on-macos-yosemite/</guid><category>posts</category></item><item><title>SSH from A through B to C, using private key on B on Mac OS X</title><link>/posts/2015/07/ssh-from-a-through-b-to-c-using-private-key-on-b-on-mac-os-x/</link><description>&lt;h1&gt;Schematic:&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;
+&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;------&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;------&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;using&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;s   using B&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Preconditions:&lt;/h1&gt;
+&lt;p&gt;A is running ssh-agent;
+A can access B;
+B can access C;
+A's ssh public key is present in &lt;code&gt;B:~/.ssh/authorized_keys&lt;/code&gt;
+B's ssh public key is present in &lt;code&gt;C:~/.ssh/authorized_keys&lt;/code&gt;&lt;/p&gt;
+&lt;h1&gt;HowTo …&lt;/h1&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">shymonk</dc:creator><pubDate>Tue, 07 Jul 2015 23:29:00 -0800</pubDate><guid>tag:None,2015-07-07:/posts/2015/07/ssh-from-a-through-b-to-c-using-private-key-on-b-on-mac-os-x/</guid><category>posts</category></item><item><title>How To Customize Save In Django Admin Inline Form</title><link>/posts/2014/10/how-to-customize-save-in-django-admin-inline-form/</link><description>&lt;h1&gt;Background&lt;/h1&gt;
+&lt;p&gt;This is a common case in django ORM.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Author&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Book&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Author&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As a CMS, we are also required to provide a feature to …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">shymonk</dc:creator><pubDate>Wed, 01 Oct 2014 23:00:00 -0800</pubDate><guid>tag:None,2014-10-01:/posts/2014/10/how-to-customize-save-in-django-admin-inline-form/</guid><category>posts</category></item></channel></rss>

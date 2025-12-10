@@ -1,0 +1,291 @@
+<html>
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>shymonk</title>
+
+        <!-- CSS -->
+            <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+            <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Home</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/archives.html">Archives</a></li>
+                        <li><a href="/about.html">About</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>How To Customize Save In Django Admin Inline Form</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/shymonk.html">shymonk</a>
+                             on 2014-10-01 23:00
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <article>
+        <h1>Background</h1>
+<p>This is a common case in django ORM.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Author</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span><span class="o">*</span><span class="n">length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span><span class="o">*</span><span class="n">length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Author</span><span class="p">)</span>
+</code></pre></div>
+
+<p>As a CMS, we are also required to provide a feature to create Author and
+several Books for him together. So, the <code>admin</code> class is here:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+
+<span class="k">class</span> <span class="nc">AuthorAdmin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="p">[</span><span class="n">AuthorForm</span><span class="p">,]</span>
+    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">BookInline</span><span class="p">,]</span>
+    <span class="n">form_layout</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">...</span>
+    <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BookInline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">BookForm</span>
+    <span class="n">form_layout</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">...</span>
+    <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AuthorForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Author</span>
+<span class="k">class</span> <span class="nc">BookForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+</code></pre></div>
+
+<p>With this <code>BookInline</code>, you can get all things done without doubt.
+But let't think about a special case:</p>
+<blockquote>
+<p>Assume that there's another Model <code>Press</code>, every author belongs to
+a press.</p>
+<p>class Press(models.Model):
+    &#x2026;</p>
+<p>When creating a author and add/update book to him, you also need
+to create/update the same one for the press, synchronously. May be
+it is a obvious bad design, but just a example.</p>
+</blockquote>
+<p>So, how to do that?</p>
+<h1>HowTo</h1>
+<p>Straightforward to say, you should customize <code>FormSet</code> for <code>BookInline</code>
+and override these two methods:</p>
+<ul>
+<li><code>save_new_objects</code></li>
+<li><code>save_existing_objects</code></li>
+</ul>
+<p>So, the <code>BookInline</code> will becomes</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.forms.models</span> <span class="kn">import</span> <span class="n">BaseInlineFormSet</span>
+
+<span class="k">class</span> <span class="nc">BookInline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">BookForm</span>
+    <span class="n">fromset</span> <span class="o">=</span> <span class="n">BookFormSet</span>
+    <span class="n">form_layout</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">...</span>
+    <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BookInlineFormSet</span><span class="p">(</span><span class="n">BaseInlineFormSet</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save_new_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">saved_instances</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">BookInlineFormSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save_new_objects</span><span class="p">(</span><span class="n">commit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="c1"># create book for press</span>
+        <span class="k">return</span> <span class="n">saved_instances</span>
+
+    <span class="k">def</span> <span class="nf">save_existing_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">saved_instances</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">BookInlineFormSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save_existing_objects</span><span class="p">(</span><span class="n">commit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="c1"># update book for press</span>
+      <span class="k">return</span> <span class="n">saved_instances</span>
+</code></pre></div>
+
+<h1>Why</h1>
+<h2>Traps</h2>
+<p>Inertia of thinking, we can override <code>save</code> function of <code>BookForm</code>
+like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="n">BookForm</span>(<span class="n">models</span>.<span class="n">ModelForm</span>):
+    ...
+
+    <span class="n">def</span> <span class="n">save</span>(<span class="nb">self</span>, <span class="n">commit</span>=<span class="nb">True</span>):
+        <span class="n">instance</span> = <span class="n">super</span>(<span class="n">BookForm</span>, <span class="nb">self</span>).<span class="n">save</span>(<span class="n">commit</span>)
+        <span class="c1"># do anything you want to sync book for Press</span>
+</code></pre></div>
+
+<p>In fact that is a <strong>mistake</strong> I've made before, because <code>save</code> function of
+<code>BookForm</code> instance is called with <code>commit=False</code>, it means book
+instance is lacking attribute values. So, it can't be copied or do
+anything else. I will give some hints to show that how django does it.</p>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">django</span><span class="o">/</span><span class="n">forms</span><span class="o">/</span><span class="n">models</span><span class="p">.</span><span class="n">py</span>
+
+<span class="n">class</span><span class="w"> </span><span class="n">BaseInlineFormSet</span><span class="p">(</span><span class="n">BaseModelFormSet</span><span class="p">)</span><span class="o">:</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">save_new</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">form</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="o">=</span><span class="n">True</span><span class="p">)</span><span class="o">:</span>
+<span class="w">        </span><span class="p">#</span><span class="w"> </span><span class="n">Use</span><span class="w"> </span><span class="n">commit</span><span class="o">=</span><span class="n">False</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">assign</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">afterwards</span><span class="p">,</span><span class="w"> </span><span class="n">then</span>
+<span class="w">        </span><span class="p">#</span><span class="w"> </span><span class="n">save</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="p">.</span>
+<span class="w">        </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">form</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="n">False</span><span class="p">)</span>
+<span class="w">        </span><span class="n">pk_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getattr</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">instance</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">fk</span><span class="p">.</span><span class="n">rel</span><span class="p">.</span><span class="n">field_name</span><span class="p">)</span>
+<span class="w">        </span><span class="n">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">fk</span><span class="p">.</span><span class="n">get_attname</span><span class="p">(),</span><span class="w"> </span><span class="n">getattr</span><span class="p">(</span><span class="n">pk_value</span><span class="p">,</span><span class="w"> </span><span class="p">&#39;</span><span class="n">pk</span><span class="p">&#39;,</span><span class="w"> </span><span class="n">pk_value</span><span class="p">))</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">commit:</span>
+<span class="w">            </span><span class="n">obj</span><span class="p">.</span><span class="n">save</span><span class="p">()</span>
+<span class="w">        </span><span class="p">#</span><span class="w"> </span><span class="n">form</span><span class="p">.</span><span class="n">save_m2m</span><span class="p">()</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">formset</span><span class="w"> </span><span class="n">later</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">commit</span><span class="o">=</span><span class="n">False</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">commit</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">hasattr</span><span class="p">(</span><span class="n">form</span><span class="p">,</span><span class="w"> </span><span class="p">&#39;</span><span class="n">save_m2m</span><span class="p">&#39;)</span><span class="o">:</span>
+<span class="w">            </span><span class="n">form</span><span class="p">.</span><span class="n">save_m2m</span><span class="p">()</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span>
+</code></pre></div>
+
+<p>Moreover, it is worth mention that although <code>obj's</code> Foreignkey is saved above,</p>
+<div class="highlight"><pre><span></span><code>setattr(obj, self.fk.get_attname(), getattr(pk_value, &#39;pk&#39;, pk_value))
+</code></pre></div>
+
+<p>you can not access it directly as following at downstream</p>
+<div class="highlight"><pre><span></span><code>def save_new_objects(self, commit=True):
+    saved_instances = super(BookInlineFormSet, self).save_new_objects(commit)
+    if commit:
+        book = saved_instances[0]
+        author = book.author  # wrong way
+    return saved_instances
+</code></pre></div>
+
+<p>Because django probably already <strong>cached</strong> a invalid author before.
+In order to get a "fresh" author, use the primary key value of the
+related object as stored in the db field instead.</p>
+<div class="highlight"><pre><span></span><code>def save_new_objects(self, commit=True):
+    saved_instances = super(BookInlineFormSet, self).save_new_objects(commit)
+    if commit:
+        book = saved_instances[0]
+        author = Author.objects.get(pk=book.author_id)  # correct way
+    return saved_instances
+</code></pre></div>
+
+<p>About caching ForeignKey in django, see <a href="https://docs.djangoproject.com/en/dev/topics/db/queries/#one-to-many-relationships">django doc</a> for more details.</p>
+    </article>
+    <hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'shymonk';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="mailto:hellojohn201@gmail.com">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://github.com/shymonk">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/shymonk/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">
+                        Copyright &copy; 2017 shymonk.
+                        Powered by <a href="//getpelican.com/">Pelican</a>
+                        Theme <a href="//startbootstrap.com/template-overviews/clean-blog/">Clean-Blog</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Javascript -->
+        <script src="/theme/js/jquery.min.js"></script>
+        <script src="/theme/js/bootstrap.min.js"></script>
+        <script src="/theme/js/clean-blog.min.js"></script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-56451105-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+
+</html>
