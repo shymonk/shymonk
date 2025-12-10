@@ -74,38 +74,38 @@
     <article>
         <h1>Background</h1>
 <p>This is a common case in django ORM.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">models</span>
 
-<span class="k">class</span> <span class="nc">Author</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span><span class="o">*</span><span class="n">length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Author</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span><span class="o">*</span><span class="n">length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span><span class="o">*</span><span class="n">length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
-    <span class="n">author</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Author</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Book</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span><span class="o">*</span><span class="n">length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+<span class="w">    </span><span class="n">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Author</span><span class="p">)</span>
 </code></pre></div>
 
 <p>As a CMS, we are also required to provide a feature to create Author and
 several Books for him together. So, the <code>admin</code> class is here:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">forms</span>
 
-<span class="k">class</span> <span class="nc">AuthorAdmin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">form</span> <span class="o">=</span> <span class="p">[</span><span class="n">AuthorForm</span><span class="p">,]</span>
-    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">BookInline</span><span class="p">,]</span>
-    <span class="n">form_layout</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="o">...</span>
-    <span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AuthorAdmin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="n">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">AuthorForm</span><span class="p">,]</span>
+<span class="w">    </span><span class="n">inlines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">BookInline</span><span class="p">,]</span>
+<span class="w">    </span><span class="n">form_layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">...</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">BookInline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
-    <span class="n">form</span> <span class="o">=</span> <span class="n">BookForm</span>
-    <span class="n">form_layout</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="o">...</span>
-    <span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BookInline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Book</span>
+<span class="w">    </span><span class="n">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BookForm</span>
+<span class="w">    </span><span class="n">form_layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">...</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">AuthorForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">Author</span>
-<span class="k">class</span> <span class="nc">BookForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AuthorForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Author</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BookForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Book</span>
 </code></pre></div>
 
 <p>With this <code>BookInline</code>, you can get all things done without doubt.
@@ -128,28 +128,28 @@ and override these two methods:</p>
 <li><code>save_existing_objects</code></li>
 </ul>
 <p>So, the <code>BookInline</code> will becomes</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.forms.models</span> <span class="kn">import</span> <span class="n">BaseInlineFormSet</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.forms.models</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">BaseInlineFormSet</span>
 
-<span class="k">class</span> <span class="nc">BookInline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">Book</span>
-    <span class="n">form</span> <span class="o">=</span> <span class="n">BookForm</span>
-    <span class="n">fromset</span> <span class="o">=</span> <span class="n">BookFormSet</span>
-    <span class="n">form_layout</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="o">...</span>
-    <span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BookInline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Book</span>
+<span class="w">    </span><span class="n">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BookForm</span>
+<span class="w">    </span><span class="n">fromset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BookFormSet</span>
+<span class="w">    </span><span class="n">form_layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">...</span>
+<span class="w">    </span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">BookInlineFormSet</span><span class="p">(</span><span class="n">BaseInlineFormSet</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">save_new_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="n">saved_instances</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">BookInlineFormSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save_new_objects</span><span class="p">(</span><span class="n">commit</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
-            <span class="c1"># create book for press</span>
-        <span class="k">return</span> <span class="n">saved_instances</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BookInlineFormSet</span><span class="p">(</span><span class="n">BaseInlineFormSet</span><span class="p">):</span>
+<span class="w">    </span><span class="k">def</span><span class="w"> </span><span class="nf">save_new_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="n">saved_instances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">super</span><span class="p">(</span><span class="n">BookInlineFormSet</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save_new_objects</span><span class="p">(</span><span class="n">commit</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">commit</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># create book for press</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">saved_instances</span>
 
-    <span class="k">def</span> <span class="nf">save_existing_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="n">saved_instances</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">BookInlineFormSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save_existing_objects</span><span class="p">(</span><span class="n">commit</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
-            <span class="c1"># update book for press</span>
-      <span class="k">return</span> <span class="n">saved_instances</span>
+<span class="w">    </span><span class="k">def</span><span class="w"> </span><span class="nf">save_existing_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="n">saved_instances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">super</span><span class="p">(</span><span class="n">BookInlineFormSet</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save_existing_objects</span><span class="p">(</span><span class="n">commit</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">commit</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># update book for press</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">saved_instances</span>
 </code></pre></div>
 
 <h1>Why</h1>
