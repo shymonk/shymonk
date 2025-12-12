@@ -54,6 +54,7 @@ docs/_build/
 target/
 
 # Pelican
+output/
 cache/
 .sass-cache/
 *.org
