@@ -34,7 +34,6 @@ TAG_SAVE_AS = ""
 
 # Disqus
 DISQUS_SITENAME = "shymonk"
-GOOGLE_ANALYTICS = "UA-56451105-1"
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
@@ -54,7 +53,6 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 # Plugins
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS=['sitemap']
 
 SITEMAP = {
     'format': 'xml',
